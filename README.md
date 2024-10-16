@@ -8,7 +8,10 @@
 
 # 5. Estrutura de Pastas
 
-# 6. React Render Tree
+# 6. Árvore de Renderização de Componentes React
+Para melhor visualização, abra a imagem abaixo em uma nova guia
+
+![Árvore de Renderização React Dunder Mifflin Playlists](./RenderTreeDunderMifflin.drawio.png)
 
 # 7. React Dependency Tree
 
