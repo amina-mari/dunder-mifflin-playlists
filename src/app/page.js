@@ -1,11 +1,13 @@
 "use client"
-
-import Link from 'next/link'
+import styles from './page.module.css'
+import LinkComponent from './components/link/link'
+import Title from './components/title/title'
 
 export default function Home() {
-  return (<>
-    <h1>Dunder Mifflin Playlists</h1>
-    <Link href="/login">Login</Link>
-  </>
+  return (
+  <section className={styles["home"]}>
+    <Title>Dunder Mifflin Playlists</Title>
+    <LinkComponent href="/login">Login</LinkComponent>
+  </section>
   );
 }
