@@ -4,7 +4,7 @@ import Button from '../Button'
 
 describe("Button component Unit Test", () => {
     beforeEach(()=> {
-        render(<Button />)
+        render(<Button>Login</Button>)
     })
     it("should render on the screen", () => {
         const buttonElement = screen.getByText("Login", {selector: "button"})
