@@ -3,7 +3,7 @@ import {toBeInTheDocument} from '@testing-library/jest-dom';
 import LinkComponent from '../link';
 
 beforeEach(() => {
-    render(<LinkComponent href="#">Click Here!</LinkComponent>)
+    render(<LinkComponent href="/login">Click Here!</LinkComponent>)
 })
 
 describe("LinkComponent Unit Test", () => {
@@ -17,9 +17,11 @@ describe("LinkComponent Unit Test", () => {
         expect(linkElement).toBeVisible()
     })
 
-    test('when clicked, link component should redirect to the correct page', () => {
+    test('when clicked, link component should redirect to the correct page', async () => {
         const linkElement = screen.getByText(/Click Here!/i)
         fireEvent.click(linkElement);
-        expect(linkElement).toBeInTheDocument();
+        const loggedElement = await screen.findByText(/Logged!/i)
+
+        expect(loggedElement).toBeInTheDocument();
     })
 })

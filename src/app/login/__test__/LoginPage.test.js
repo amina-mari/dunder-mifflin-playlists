@@ -13,11 +13,11 @@ describe("Login Page Integration Test", () => {
 
         const loginTitle = screen.getByText("Login", {selector: "h2"})
         const loginSubtitle = screen.getByText("Entre com sua conta")
-        const loginEmail = screen.getAllByPlaceholderText("email")
-        const loginPassword = screen.getAllByPlaceholderText("senha")
+        const loginEmail = screen.getByPlaceholderText("email")
+        const loginPassword = screen.getByPlaceholderText("senha")
         const loginButton = screen.getByText("Login", {selector: "button"})
 
-        const oAuthIcon = screen.getByTestId("oauth-icon")
+        const oAuthIcon = screen.getByTestId("oAuth")
 
         const footerText = screen.getByText("Não tem uma conta? Que tristeza!")
         const termsAndConditionsFooter = screen.getByText("Termos e Condições")

@@ -37,6 +37,7 @@ export default function Input({type}) {
     return (
             <input 
                 type={type}
+                placeholder={type === "email" ? "email" : "senha"}
                 required
                 data-testid={`input-${type}`}
                 className={`${styles["input"]} ${styles[`input-${type}`]} ${isValidInput ? "" : `${styles[`input-${type}_invalid`]}`}`}
