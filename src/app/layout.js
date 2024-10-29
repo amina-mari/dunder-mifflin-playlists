@@ -5,13 +5,14 @@ import NavigationDots from "./components/navigationDots/navigationDots";
 import { useEffect, useState } from "react";
 import { Inter } from 'next/font/google';
 import { usePathname } from "next/navigation";
+import { SessionProvider } from 'next-auth/react'
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 })
 
-export default function RootLayout({ children }) {
+export default function RootLayout({children}) {
   const [activeDot, setActiveDot] = useState("none")
   const path = usePathname();
 
@@ -29,10 +30,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br" className={inter.className}>
       <body className="main">
-        <div className="main-container">
-          {children}
-        </div>
-        <NavigationDots activeDot={activeDot}/>
+        <SessionProvider>
+          <div className="main-container">
+            {children}
+          </div>
+          <NavigationDots activeDot={activeDot}/>
+        </SessionProvider>
       </body>
     </html>
   );
