@@ -1,12 +1,28 @@
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {toBeInTheDocument} from '@testing-library/jest-dom';
 import LinkComponent from '../link';
+import { useRouter } from 'next/router';
 
-beforeEach(() => {
-    render(<LinkComponent href="/login">Click Here!</LinkComponent>)
-})
+jest.mock("next/dist/client/router", () => ({
+    useRouter: jest.fn(),
+}))
 
 describe("LinkComponent Unit Test", () => {
+    const mockPush = jest.fn(() => Promise.resolve(true));
+    
+    beforeAll(() => {
+        useRouter.mockReturnValue({
+            asPath: "/",
+            query: {},
+            push: mockPush,
+            prefetch: () => Promise.resolve(true)
+        })
+    })
+
+    beforeEach(() => {
+        render(<LinkComponent href="/login">Click Here!</LinkComponent>)
+    })
+
     test('should render the Link with the right text', () => {
         const linkElement = screen.getByText(/Click Here!/i)
         expect(linkElement).toBeInTheDocument()
@@ -20,8 +36,7 @@ describe("LinkComponent Unit Test", () => {
     test('when clicked, link component should redirect to the correct page', async () => {
         const linkElement = screen.getByText(/Click Here!/i)
         fireEvent.click(linkElement);
-        const loggedElement = await screen.findByText(/Logged!/i)
 
-        expect(loggedElement).toBeInTheDocument();
+        expect(mockPush).toHaveBeenCalledWith("/login", expect.anything(), expect.anything())
     })
 })

@@ -24,13 +24,27 @@ export const authOptions = {
                 params: {
                     response_type: 'code',
                     client_id: process.env.SPOTIFY_ID,
-                    scope: "user-read-private user-read-email",
+                    scope: "user-top-read user-library-read",
                     redirect_uri: "http://localhost:3000/api/auth/callback/spotify",
                     state: state
                 }
             }
         })
-    ]
+    ],
+    callbacks: {
+        async jwt({ token, account }) {
+            if(account){
+                token.access_token = account.access_token;
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            return {
+                ...session,
+                token
+            };
+        },
+    }
 }
 
 const handler = NextAuth(authOptions);
