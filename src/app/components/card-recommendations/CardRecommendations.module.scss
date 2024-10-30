@@ -1,0 +1,16 @@
+.card {
+    background: #FFFFFF1A;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 12px;
+    width: 30%;
+    min-width: 200px;
+    font-size: 0.6rem;
+    margin-bottom: 20px;
+
+    img {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
+}

@@ -8,7 +8,8 @@ export default function Home() {
   const {data: session, status} = useSession();
 
   return <>
-    { status !== "authenticated" && <LoginPage/> }
+    { status !== "authenticated" && <LoginPage/>}
+    
     { status === "authenticated" && <SongsPage/>} 
   </>
 }

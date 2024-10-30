@@ -1,0 +1,15 @@
+.back-forth-button {
+    background: #FFFFFF1A;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

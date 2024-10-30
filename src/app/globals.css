@@ -1,3 +1,5 @@
+
+
 /* 
     RESET CSS, créditos para:
 
@@ -68,4 +70,5 @@ table {
     border-radius: 25px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(15px);
+    padding: 6rem 8rem;
 }

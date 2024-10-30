@@ -1,0 +1,35 @@
+.songs-page {
+    display: flex;
+    justify-content: space-between;
+
+    main {
+
+        width: 70%;
+        nav {
+            margin-bottom: 20px;
+
+            div {
+                display: flex;
+                gap: 10px;
+            }
+        }
+
+        .songs-section {
+            
+            .songs-section-title,
+            .songs-section-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .songs-section-title {
+                button {
+                    background: none;
+                    border: none;
+                    color: white;
+                }
+            }
+        }
+    }
+}

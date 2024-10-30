@@ -1,0 +1,27 @@
+.nav-button {
+    width: 100%;
+    font-size: 0.8rem;
+    color:#FFFFFF99;
+    font-weight: 500;
+
+    border-radius: 12px;
+    padding: 6px 15px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    img {
+        margin-right: 12px;
+    }
+}
+
+.nav-button-active {
+    color: white;
+    background: #FFFFFF1A;
+    border: 1px solid #FFFFFF1A;
+}

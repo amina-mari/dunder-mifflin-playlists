@@ -1,0 +1,26 @@
+.card {
+    width: 18%;
+    min-width: 100px;
+    border-radius: 12px;
+    background: #FFFFFF1A;
+    border: 1px solid #FFFFFF1A;
+    padding: 15px;
+
+    img {
+        width: 90%;
+        display: block;
+        margin: auto;
+        border-radius: 30px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 0.6rem;
+        font-weight: 500;
+    }
+
+    span {
+        font-size: 0.5rem;
+        font-weight: 400;
+    }
+}

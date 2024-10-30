@@ -1,0 +1,43 @@
+.card-quick-access {
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    border-radius: 12px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    img {
+        width: 30px;
+        margin-right: 5px;
+    }
+
+    p {
+        font-size: 0.7rem;
+        color: #FFFFFF99;
+        font-weight: 400;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    span {
+        font-size: 0.6rem;
+        color: #FFFFFF66;
+        font-weight: 400;
+        width: 100%;
+    }
+}
+
+.card-quick-access-active {
+    background: #FFFFFF1A;
+    border: 1px solid #FFFFFF1A;
+
+    p {
+        color: white;
+    }
+
+    span {
+        color: white;
+    }
+}
