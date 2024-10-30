@@ -12,10 +12,11 @@ export default function SongsPage() {
     const {data: session, status} = useSession();
     const [topArtists, setTopArtists] = useState();
     const [recommendations, setRecommendations] = useState();
+    const [latestTracks, setLatestTracks] = useState();
 
     let dateHours = new Date(Date.now()).getHours()
 
-    const fetchArtists = async (ignore) => {
+    const fetchArtists = async () => {
         let response = await fetch(`https://api.spotify.com/v1/me/top/artists?offset=0&limit=5`, {
             headers: {
                 Authorization: `Bearer ${session.token.access_token}`
@@ -23,28 +24,48 @@ export default function SongsPage() {
         })
 
         let artists = await response.json();
+        
+        return artists.items;
+    }
 
-        let seedsRecommendations = artists.items.reduce((stringSeed, artist) => stringSeed += artist.id + ",", "");
+    const fetchLatestTracks = async () => {
+        let responseLatestTracks = await fetch(`https://api.spotify.com/v1/me/top/tracks?offset=0&limit=5&time-range=short_term`, {
+            headers: {
+                Authorization: `Bearer ${session.token.access_token}`
+            }
+        })
+
+        let latestTracksJson = await responseLatestTracks.json()
+
+        return latestTracksJson.items;
+    }
+
+    const fetchRecommendations = async (artists) => {
+        let seedsRecommendations = artists.reduce((stringSeed, artist) => stringSeed += artist.id + ",", "");
         seedsRecommendations = seedsRecommendations.slice(0, -1)
 
-        let responseRecommendations = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedsRecommendations}&limit=5`, {
+        let responseRecommendations = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedsRecommendations}&limit=6`, {
             headers: {
                 Authorization: `Bearer ${session.token.access_token}`
             }
         })
         let recommendationsJson = await responseRecommendations.json()
 
-        console.log(recommendationsJson)
-        if(!ignore) {
-            setRecommendations(recommendationsJson.tracks)
-            setTopArtists(artists.items);
-        }
+        return recommendationsJson.tracks;
     }
 
     useEffect(() => {
         let ignore = false;
 
-        fetchArtists(ignore)        
+        fetchLatestTracks().then(latestTracks => {
+            if(!ignore) setLatestTracks(latestTracks);
+        });
+        fetchArtists(ignore).then((artists) => {
+            fetchRecommendations(artists).then((recommendations)=> {
+                if(!ignore) setRecommendations(recommendations)
+            })
+            if(!ignore) setTopArtists(artists);       
+        });
 
         return () => {
             ignore = true;
@@ -60,7 +81,7 @@ export default function SongsPage() {
                         <BackForthButton type="back"/>
                         <BackForthButton type="forth" />
                     </div>
-                    <UserImageComponent imgSrc="" />
+                    <UserImageComponent imgSrc="./mypath" />
                 </nav>
                 <section className={styles["songs-section"]}>
                     <Title level={2}>{
@@ -72,7 +93,8 @@ export default function SongsPage() {
                             recommendations ? recommendations.map(recItem => 
                                 <CardRecommendations 
                                     imgSrc={recItem.album.images[2].url}
-                                    title={recItem.name} />
+                                    title={recItem.name} 
+                                    key={recItem.id}/>
                             ) : ""
                         }
                     </div>
@@ -83,7 +105,14 @@ export default function SongsPage() {
                         <button>Show all</button>
                     </div>
                     <div className={styles["songs-section-content"]}>
-                        
+                        {latestTracks ? latestTracks.map(track => 
+                                <Card
+                                    imgSrc={track.album.images[1].url}
+                                    title={track.name}
+                                    description={track.type}
+                                    key={track.id}/>
+                                
+                            )  : ""}
                     </div>
                 </section>
                 <section className={styles["songs-section"]}>
@@ -96,7 +125,8 @@ export default function SongsPage() {
                                 <Card
                                     imgSrc={artist.images[2].url}
                                     title={artist.name}
-                                    description={artist.type}/>
+                                    description={artist.type}
+                                    key={artist.id}/>
                                 
                             )  : ""}
                     </div>

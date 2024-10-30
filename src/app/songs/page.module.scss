@@ -1,10 +1,13 @@
 .songs-page {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     main {
 
         width: 70%;
+        min-width: 450px;
+
         nav {
             margin-bottom: 20px;
 
@@ -15,12 +18,14 @@
         }
 
         .songs-section {
-            
+            margin-bottom: 20px;
+
             .songs-section-title,
             .songs-section-content {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
+                row-gap: 20px;
             }
 
             .songs-section-title {
