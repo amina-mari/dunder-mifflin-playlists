@@ -6,12 +6,16 @@
     border: 1px solid #FFFFFF1A;
     padding: 15px;
 
+    &:hover {
+        cursor: pointer;
+    }
+    
     img {
         width: 90%;
         display: block;
         margin: auto;
-        border-radius: 30px;
-        margin-bottom: 5px;
+        border-radius: 50%;
+        margin-bottom: 10px;
     }
 
     p {

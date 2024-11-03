@@ -29,8 +29,7 @@ export default function NavButton({type, active, setActive}) {
     return (
         <button
             onClick={() => setActive(type) }
-            className={`${styles["nav-button"]} 
-            ${active === type ? styles["nav-button-active"] : ""}`}>
+            className={`${styles["nav-button"]} ${active === type ? styles["nav-button-active"] : ""}`}>
                 <Image 
                     src={icon} 
                     alt={`${type} icon`} 

@@ -1,6 +1,7 @@
 .card-quick-access {
     display: flex;
     width: 100%;
+    align-items: center;
     padding: 5px;
     border-radius: 12px;
 
@@ -17,7 +18,6 @@
         font-size: 0.7rem;
         color: #FFFFFF99;
         font-weight: 400;
-        margin-bottom: 5px;
         width: 100%;
     }
 

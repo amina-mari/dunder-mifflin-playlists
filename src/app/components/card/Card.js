@@ -1,13 +1,22 @@
 import styles from './Card.module.scss'
 
-export default function Card({imgSrc, title, description}) {
+export default function Card(
+        {
+            imgSrc, 
+            title, 
+            description,
+            onClick
+        }
+    ) {
     return (
-        <div className={styles["card"]}>
+        <div 
+            className={styles["card"]}
+            onClick={onClick}>
             <img 
                 src={imgSrc}
                 />
             <p>{title}</p>
-            <span>{description}</span>
+            <span>{description  === "track" ? "Música" : "Artista"}</span>
         </div>
     )
 }

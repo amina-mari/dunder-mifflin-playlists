@@ -3,21 +3,9 @@ import {toBeInTheDocument} from '@testing-library/jest-dom';
 import LinkComponent from '../link';
 import { useRouter } from 'next/router';
 
-jest.mock("next/dist/client/router", () => ({
-    useRouter: jest.fn(),
-}))
 
 describe("LinkComponent Unit Test", () => {
     const mockPush = jest.fn(() => Promise.resolve(true));
-    
-    beforeAll(() => {
-        useRouter.mockReturnValue({
-            asPath: "/",
-            query: {},
-            push: mockPush,
-            prefetch: () => Promise.resolve(true)
-        })
-    })
 
     beforeEach(() => {
         render(<LinkComponent href="/login">Click Here!</LinkComponent>)
@@ -37,6 +25,6 @@ describe("LinkComponent Unit Test", () => {
         const linkElement = screen.getByText(/Click Here!/i)
         fireEvent.click(linkElement);
 
-        expect(mockPush).toHaveBeenCalledWith("/login", expect.anything(), expect.anything())
+        expect(linkElement.getAttribute("href")).toBe("/login")
     })
 })

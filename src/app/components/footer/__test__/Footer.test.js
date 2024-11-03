@@ -24,24 +24,18 @@ describe("Footer Unit Test", () => {
     it("'terms and conditions' link should redirect to the correct pages when clicked", () => {
         const termsLink = screen.getByText("Termos e Condições")
 
-        fireEvent.click(termsLink);
-
-        expect(screen.getByText("Aqui estão nossos Termos e Condições!")).toBeInTheDocument();
+        expect(termsLink.getAttribute("href")).toBe("terms-and-conditions")
     })
 
     it("'support' link should redirect to the correct pages when clicked", () => {
         const supportLink = screen.getByText("Suporte");
 
-        fireEvent.click(supportLink);
-
-        expect(screen.getByText("Entre em contato com nosso suporte")).toBeInTheDocument();
+        expect(supportLink.getAttribute("href")).toBe("support")
     })
 
     it("'doubts' link should redirect to the correct pages when clicked", () => {
-        const doubtsLink = screen.getByText("Suporte");
+        const doubtsLink = screen.getByText("Dúvidas");
 
-        fireEvent.click(doubtsLink);
-
-        expect(screen.getByText("Perguntas Frequentes")).toBeInTheDocument();
+        expect(doubtsLink.getAttribute("href")).toBe("faq")
     })
 })

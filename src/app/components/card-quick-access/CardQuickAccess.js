@@ -1,13 +1,22 @@
 import styles from './CardQuickAccess.module.scss'
+import favoriteMusicsIcon from './icons/favorite-musics-icon.svg'
 
 export default function CardQuickAccess (
     {   
-        imgSrc, 
-        title, 
+        imgSrc = favoriteMusicsIcon.src, 
+        title = "", 
         description, 
         onClick,
         active = false}
     ) {
+
+    let titleFormatted;
+    
+    if(title.length > 30) {
+        titleFormatted = title.slice(0,30) + "..."
+    } else {
+        titleFormatted = title;
+    }
     return (
         <div 
             className={
@@ -15,8 +24,10 @@ export default function CardQuickAccess (
                  ${active ? styles["card-quick-access-active"] : ""}`}
             onClick={onClick}>
             <img src={imgSrc} />
-            <p>{title}</p>
-            <span>{description}</span>
+            <div>
+                <p>{titleFormatted}</p>
+                <span>{description  === "track" ? "Música" : description}</span>
+            </div>
         
         </div>
     )

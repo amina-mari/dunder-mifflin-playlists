@@ -1,3 +1,5 @@
+"use client"
+
 import {useSession} from 'next-auth/react'
 import { useEffect, useState } from 'react';
 import Navbar from '../components/navbar/Navbar';
@@ -17,15 +19,20 @@ export default function SongsPage() {
     let dateHours = new Date(Date.now()).getHours()
 
     const fetchArtists = async () => {
-        let response = await fetch(`https://api.spotify.com/v1/me/top/artists?offset=0&limit=5`, {
-            headers: {
-                Authorization: `Bearer ${session.token.access_token}`
-            }
-        })
+        try {
+            let response = await fetch(`https://api.spotify.com/v1/me/top/artists?offset=0&limit=5`, {
+                headers: {
+                    Authorization: `Bearer ${session.token.access_token}`
+                }
+            })
 
-        let artists = await response.json();
-        
-        return artists.items;
+            let artists = await response.json();
+            
+            return artists.items;
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
     const fetchLatestTracks = async () => {
@@ -56,7 +63,6 @@ export default function SongsPage() {
 
     useEffect(() => {
         let ignore = false;
-
         fetchLatestTracks().then(latestTracks => {
             if(!ignore) setLatestTracks(latestTracks);
         });
@@ -81,7 +87,7 @@ export default function SongsPage() {
                         <BackForthButton type="back"/>
                         <BackForthButton type="forth" />
                     </div>
-                    <UserImageComponent imgSrc="./mypath" />
+                    <img src="" alt="" />
                 </nav>
                 <section className={styles["songs-section"]}>
                     <Title level={2}>{
