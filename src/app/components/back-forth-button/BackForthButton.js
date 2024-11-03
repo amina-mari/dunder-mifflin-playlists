@@ -10,7 +10,7 @@ export default function BackForthButton ({type, onClick}) {
         <button
             className={styles["back-forth-button"]}
             data-testid={`${type}Button`}
-            onClick={onClick}>
+            onClick={() => onClick(type)}>
                 <img src={icon.src} alt={`${type} icon`} />
         </button>
     )

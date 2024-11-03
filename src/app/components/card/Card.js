@@ -5,13 +5,14 @@ export default function Card(
             imgSrc, 
             title, 
             description,
+            id,
             onClick
         }
     ) {
     return (
         <div 
             className={styles["card"]}
-            onClick={onClick}>
+            onClick={() => onClick(id)}>
             <img 
                 src={imgSrc}
                 />

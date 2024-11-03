@@ -5,7 +5,8 @@ export default function CardQuickAccess (
     {   
         imgSrc = favoriteMusicsIcon.src, 
         title = "", 
-        description, 
+        description,
+        id, 
         onClick,
         active = false}
     ) {
@@ -22,7 +23,8 @@ export default function CardQuickAccess (
             className={
                 `${styles["card-quick-access"]} 
                  ${active ? styles["card-quick-access-active"] : ""}`}
-            onClick={onClick}>
+            onClick={() => onClick(id)}
+            data-testid={id}>
             <img src={imgSrc} />
             <div>
                 <p>{titleFormatted}</p>

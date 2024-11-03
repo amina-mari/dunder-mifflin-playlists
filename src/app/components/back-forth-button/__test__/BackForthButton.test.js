@@ -3,7 +3,7 @@ import BackForthButton from '../BackForthButton';
 import {toBeInTheDocument} from '@testing-library/jest-dom'
 
 describe("BackForthButton Component Unit Test", () => {
-    const mockOnClick = jest.fn(() => {});
+    const mockOnClick = jest.fn((type) => {});
 
     beforeEach(() => {
         render(<BackForthButton 
@@ -21,5 +21,6 @@ describe("BackForthButton Component Unit Test", () => {
         fireEvent.click(buttonElement);
 
         expect(mockOnClick).toHaveBeenCalled();
+        expect(mockOnClick.mock.calls[0][0]).toBe("back");
     })
 })

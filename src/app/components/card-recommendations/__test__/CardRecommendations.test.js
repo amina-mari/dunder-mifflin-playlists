@@ -25,20 +25,24 @@ describe("Card Component Unit Test", () => {
         render(<CardRecommendations 
             imgSrc={testIcon.src} 
             title="Adele" 
-            description="artist" 
+            description="artist"
+            id={123} 
             onClick={mockedOnClick}/>)
         render(<CardRecommendations 
             imgSrc={testIcon.src} 
             title="John Mayer" 
-            description="artist" 
+            description="artist"
+            id={321} 
             onClick={mockedOnClick}/>)
 
         const adeleCardTitle = screen.getByText("Adele");
-        const johnMayerCardTitle = screen.getByText("Adele");
+        const johnMayerCardTitle = screen.getByText("John Mayer");
         
         fireEvent.click(adeleCardTitle);
         fireEvent.click(johnMayerCardTitle);
 
         expect(mockedOnClick).toHaveBeenCalledTimes(2);
+        expect(mockedOnClick.mock.calls[0][0]).toBe(123);
+        expect(mockedOnClick.mock.calls[1][0]).toBe(321);
     })
 })

@@ -21,7 +21,8 @@ export default function Navbar ({cards, cardOnClick, userMusicsOnClick}) {
                         imgSrc={card.album?.images[2]?.url}
                         title={card.name}
                         description={card.type}
-                        onClick={() => cardOnClick(card.id)}
+                        id={card.id}
+                        onClick={cardOnClick}
                         key={"nav" + card.id}/>
                 )
             }
