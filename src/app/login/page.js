@@ -12,7 +12,7 @@ export default function LoginPage() {
             <div className={styles["header"]}>
                 <Title>Dunder Mifflin Playlists</Title>
                 <p>Assim como o escritório mais icônico de Scranton, esta aplicação é um lugar onde as músicas são gerenciadas com a mesma seriedade (ou falta dela) que Michael Scott gerencia sua equipe. Aqui, você pode criar, editar e organizar suas playlists como um verdadeiro Regional Manager... ou Assistant to the Regional Manager.</p>
-                <p>Explore nossas funcionalidades enquanto escuta seus hits favoritos, e não se esqueça: "Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love their playlists." – Michael Scott</p>
+                <p>Explore nossas funcionalidades enquanto escuta seus hits favoritos, e não se esqueça: &quot;Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love their playlists.&quot; – Michael Scott</p>
             </div>
             <div className={styles["login-form"]}>
                 <Title level={2}>Login</Title>
