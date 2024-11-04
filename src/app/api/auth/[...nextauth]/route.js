@@ -25,7 +25,7 @@ export const authOptions = {
                     response_type: 'code',
                     client_id: process.env.SPOTIFY_ID,
                     scope: "user-top-read user-library-read",
-                    redirect_uri: "http://localhost:3000/api/auth/callback/spotify",
+                    redirect_uri: "https://dunder-mifflin-playlists.vercel.app//api/auth/callback/spotify",
                     state: state
                 }
             }
