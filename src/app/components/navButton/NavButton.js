@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import homeIcon from './icons/home-icon.svg'
-import userLibraryIcon from './icons/user-library-icon.svg'
-import searchIcon from './icons/search-icon.svg'
+import homeIcon from '../../../public/icons/home-icon.svg'
+import userLibraryIcon from '../../../public/icons/user-library-icon.svg'
+import searchIcon from '../../../public/icons/search-icon.svg'
 import styles from './NavButton.module.scss'
 
 export default function NavButton({type, active, setActive}) {

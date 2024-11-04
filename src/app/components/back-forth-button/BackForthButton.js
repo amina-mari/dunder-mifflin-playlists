@@ -1,6 +1,6 @@
 import Image from "next/image"
-import backIcon from './icons/back-icon.svg'
-import forthIcon from './icons/forth-icon.svg'
+import backIcon from '../../../public/icons/back-icon.svg'
+import forthIcon from '../../../public/icons/forth-icon.svg'
 import styles from './BackForthButton.module.scss'
 
 export default function BackForthButton ({type, onClick}) {

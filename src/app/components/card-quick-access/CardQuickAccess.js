@@ -1,5 +1,5 @@
 import styles from './CardQuickAccess.module.scss'
-import favoriteMusicsIcon from './icons/favorite-musics-icon.svg'
+import favoriteMusicsIcon from '../../../public/icons/favorite-musics-icon.svg'
 
 export default function CardQuickAccess (
     {   

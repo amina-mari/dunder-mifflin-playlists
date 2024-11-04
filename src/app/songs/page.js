@@ -2,72 +2,35 @@
 
 import {useSession} from 'next-auth/react'
 import { useEffect, useState } from 'react';
+
+import styles from './page.module.scss'
 import Navbar from '../components/navbar/Navbar';
 import BackForthButton from '../components/back-forth-button/BackForthButton';
-import styles from './page.module.scss'
-import UserImageComponent from '../components/user-image-component/UserImageComponet';
 import Title from '../components/title/title'
 import Card from '../components/card/Card';
 import CardRecommendations from '../components/card-recommendations/CardRecommendations';
 
+import fetchArtists from '@/utils/fetchArtists/fetchArtists';
+import fetchLatestTracks from '@/utils/fetchLatestTracks/fetchLatestTracks';
+import fetchRecommendations from '@/utils/fetchRecommendations/fetchRecommendations';
+
 export default function SongsPage() {
     const {data: session, status} = useSession();
-    const [topArtists, setTopArtists] = useState();
-    const [recommendations, setRecommendations] = useState();
-    const [latestTracks, setLatestTracks] = useState();
+    const [topArtists, setTopArtists] = useState([]);
+    const [recommendations, setRecommendations] = useState([]);
+    const [latestTracks, setLatestTracks] = useState([]);
+    const [offset, setOffset] = useState();
 
     let dateHours = new Date(Date.now()).getHours()
 
-    const fetchArtists = async () => {
-        try {
-            let response = await fetch(`https://api.spotify.com/v1/me/top/artists?offset=0&limit=5`, {
-                headers: {
-                    Authorization: `Bearer ${session.token.access_token}`
-                }
-            })
-
-            let artists = await response.json();
-            
-            return artists.items;
-        } catch (error) {
-            console.log(error)
-        }
-
-    }
-
-    const fetchLatestTracks = async () => {
-        let responseLatestTracks = await fetch(`https://api.spotify.com/v1/me/top/tracks?offset=0&limit=5&time-range=short_term`, {
-            headers: {
-                Authorization: `Bearer ${session.token.access_token}`
-            }
-        })
-
-        let latestTracksJson = await responseLatestTracks.json()
-
-        return latestTracksJson.items;
-    }
-
-    const fetchRecommendations = async (artists) => {
-        let seedsRecommendations = artists.reduce((stringSeed, artist) => stringSeed += artist.id + ",", "");
-        seedsRecommendations = seedsRecommendations.slice(0, -1)
-
-        let responseRecommendations = await fetch(`https://api.spotify.com/v1/recommendations?seed_artists=${seedsRecommendations}&limit=6`, {
-            headers: {
-                Authorization: `Bearer ${session.token.access_token}`
-            }
-        })
-        let recommendationsJson = await responseRecommendations.json()
-
-        return recommendationsJson.tracks;
-    }
-
     useEffect(() => {
         let ignore = false;
-        fetchLatestTracks().then(latestTracks => {
+        const token = session.token.access_token;
+        fetchLatestTracks(token).then(latestTracks => {
             if(!ignore) setLatestTracks(latestTracks);
         });
-        fetchArtists(ignore).then((artists) => {
-            fetchRecommendations(artists).then((recommendations)=> {
+        fetchArtists(token).then((artists) => {
+            fetchRecommendations(token, artists).then((recommendations)=> {
                 if(!ignore) setRecommendations(recommendations)
             })
             if(!ignore) setTopArtists(artists);       

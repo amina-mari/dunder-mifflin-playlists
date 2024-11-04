@@ -1,6 +1,6 @@
 import NavButton from "../navButton/NavButton"
 import CardQuickAccess from "../card-quick-access/CardQuickAccess"
-import favMusicIcon from '../card-quick-access/icons/favorite-musics-icon.svg'
+import favMusicIcon from '../../../public/icons/favorite-musics-icon.svg'
 import styles from './Navbar.module.scss'
 
 export default function Navbar ({cards, cardOnClick, userMusicsOnClick}) {

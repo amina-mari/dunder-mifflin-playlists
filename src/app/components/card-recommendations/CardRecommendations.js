@@ -1,4 +1,4 @@
-import userSongsIcon from './icons/user-songs-icon.svg'
+import userSongsIcon from '../../../public/icons/user-songs-icon.svg'
 import styles from './CardRecommendations.module.scss'
 
 export default function CardRecommendations ({imgSrc = userSongsIcon, title, id, onClick}) {
