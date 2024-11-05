@@ -8,7 +8,8 @@ import Navbar from '../components/navbar/Navbar';
 import BackForthButton from '../components/back-forth-button/BackForthButton';
 import Title from '../components/title/title'
 import Card from '../components/card/Card';
-import CardRecommendations from '../components/card-recommendations/CardRecommendations';
+// import CardRecommendations from '../components/card-recommendations/CardRecommendations';
+import CardPlaylist from '../components/card-playlist/CardPlaylist';
 
 import fetchArtists from '@/utils/fetchArtists/fetchArtists';
 import fetchLatestTracks from '@/utils/fetchLatestTracks/fetchLatestTracks';
@@ -68,7 +69,7 @@ export default function SongsPage() {
                     <div className={styles["songs-section-content"]}>
                         {
                             playlists ? playlists.map(playlist => 
-                                <CardRecommendations 
+                                <CardPlaylist 
                                     imgSrc={playlist.images ? playlist.images[0].url : testIcon.src}
                                     title={playlist.name} 
                                     key={playlist.id}/>
