@@ -13,12 +13,16 @@ import CardRecommendations from '../components/card-recommendations/CardRecommen
 import fetchArtists from '@/utils/fetchArtists/fetchArtists';
 import fetchLatestTracks from '@/utils/fetchLatestTracks/fetchLatestTracks';
 import fetchRecommendations from '@/utils/fetchRecommendations/fetchRecommendations';
+import fetchPlaylists from '@/utils/fetchPlaylists/fetchPlaylists';
+
+import testIcon from '../../public/icons/test-icon.svg'
 
 export default function SongsPage() {
     const {data: session, status} = useSession();
     const [topArtists, setTopArtists] = useState([]);
     const [recommendations, setRecommendations] = useState([]);
     const [latestTracks, setLatestTracks] = useState([]);
+    const [playlists, setPlaylists] = useState([])
     const [offset, setOffset] = useState();
 
     let dateHours = new Date(Date.now()).getHours()
@@ -34,6 +38,10 @@ export default function SongsPage() {
                 if(!ignore) setRecommendations(recommendations)
             })
             if(!ignore) setTopArtists(artists);       
+        });
+
+        fetchPlaylists(token).then(playlists => {
+            if(!ignore) setPlaylists(playlists)
         });
 
         return () => {
@@ -59,11 +67,11 @@ export default function SongsPage() {
                     }</Title>
                     <div className={styles["songs-section-content"]}>
                         {
-                            recommendations ? recommendations.map(recItem => 
+                            playlists ? playlists.map(playlist => 
                                 <CardRecommendations 
-                                    imgSrc={recItem.album.images[2].url}
-                                    title={recItem.name} 
-                                    key={recItem.id}/>
+                                    imgSrc={playlist.images ? playlist.images[0].url : testIcon.src}
+                                    title={playlist.name} 
+                                    key={playlist.id}/>
                             ) : ""
                         }
                     </div>

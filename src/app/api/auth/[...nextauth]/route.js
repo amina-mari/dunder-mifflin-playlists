@@ -24,7 +24,7 @@ export const authOptions = {
                 params: {
                     response_type: 'code',
                     client_id: process.env.SPOTIFY_ID,
-                    scope: "user-top-read user-library-read",
+                    scope: "user-top-read user-library-read playlist-read-private playlist-read-collaborative user-read-private user-read-email",
                     redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/spotify`,
                     state: state
                 }
