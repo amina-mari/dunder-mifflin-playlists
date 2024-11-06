@@ -53,6 +53,7 @@ export default function SongsPage() {
             description: playlistResponse.description,
             tracks: playlistResponse.tracks.items.map((item) => ({
                 name: item.track.name,
+                id: item.track.id,
                 artists: getArtistsNameFormatted(item.track.artists),
                 imgSrc: item.track.album.images[0].url
             }))
@@ -178,7 +179,7 @@ export default function SongsPage() {
                     <span>{playlist.description}</span>
                     {playlist.tracks && 
                         playlist.tracks.map((track) => 
-                            <div>
+                            <div key={track.id}>
                                 <img src={track.imgSrc} alt="" />
                                 <p>{track.name}</p>
                                 <p>{track.artists}</p>
