@@ -5,7 +5,7 @@ export default function PlaylistTrack({
 }) {
     
     return (
-        <div className={styles["playlistTrack"]} key={id}>
+        <div className={styles["playlistTrack"]}>
             <img src={imgSrc} alt="" />
             <div>
                 <p>{name}</p>

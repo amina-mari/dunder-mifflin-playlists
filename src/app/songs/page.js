@@ -186,7 +186,8 @@ export default function SongsPage() {
                                 //     <p>{track.name}</p>
                                 //     <p>{track.artists}</p>
                                 // </div>
-                                <PlaylistTrack 
+                                <PlaylistTrack
+                                    key={track.id} 
                                     id={track.id}
                                     imgSrc={track.imgSrc}
                                     name={track.name}
