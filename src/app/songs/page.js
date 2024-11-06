@@ -90,7 +90,10 @@ export default function SongsPage() {
 
     return (
         <div className={styles["songs-page"]}>
-            <Navbar cards={playlists}/>
+            <Navbar 
+                cards={playlists}
+                homeButtonOnClick={() => setShow("default")}
+                cardOnClick={onClickPlaylist}/>
             {show === "default" && 
                 <main>
                     <nav>
@@ -181,11 +184,6 @@ export default function SongsPage() {
                     <section>
                         {playlist.tracks && 
                             playlist.tracks.map((track) => 
-                                // <div key={track.id}>
-                                //     <img src={track.imgSrc} alt="" />
-                                //     <p>{track.name}</p>
-                                //     <p>{track.artists}</p>
-                                // </div>
                                 <PlaylistTrack
                                     key={track.id} 
                                     id={track.id}

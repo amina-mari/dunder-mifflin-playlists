@@ -23,25 +23,22 @@ describe("Navbar Unit/Integration tests", () => {
                 name: "Testing Card 1",
                 type: "track",
                 id: 1,
-                album: {
-                    images: [
-                        "",
-                        "",
-                        {url: testIcon.src}
-                    ]
-                },
+                images: [
+                    {url: testIcon.src},
+                    "",
+                    ""
+                ]
             },
             {
                 name: "Testing Card 2",
                 type: "track",
                 id: 2,
-                album: {
-                    images: [
-                        "",
-                        "",
-                        {url: testIcon.src}
-                    ]
-                },
+                images: [
+                    {url: testIcon.src},
+                    "",
+                    ""
+                ]
+                
             }]}
             cardOnClick={mockCardOnClick}/>)
 

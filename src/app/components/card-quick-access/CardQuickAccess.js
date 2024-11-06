@@ -8,7 +8,7 @@ export default function CardQuickAccess (
         description,
         id, 
         onClick,
-        active = false}
+        active}
     ) {
 
     let titleFormatted;
@@ -22,7 +22,7 @@ export default function CardQuickAccess (
         <div 
             className={
                 `${styles["card-quick-access"]} 
-                 ${active ? styles["card-quick-access-active"] : ""}`}
+                 ${active === id ? styles["card-quick-access-active"] : ""}`}
             onClick={() => onClick(id)}
             data-testid={id}>
             <img src={imgSrc} />
