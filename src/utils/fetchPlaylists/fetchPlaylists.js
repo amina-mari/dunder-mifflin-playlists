@@ -8,7 +8,7 @@ export default async function fetchPlaylists (token) {
 
         let {id: user_id} = await responseUser.json();
         
-        let responsePlaylists = await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists?offset=0&limit=5`, {
+        let responsePlaylists = await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists?offset=0&limit=6`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

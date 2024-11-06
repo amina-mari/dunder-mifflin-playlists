@@ -18,7 +18,7 @@ export default function Navbar ({cards, cardOnClick, userMusicsOnClick}) {
             {cards &&
                 cards.map(card =>
                     <CardQuickAccess 
-                        imgSrc={card.album?.images[2]?.url}
+                        imgSrc={card.images[0]?.url}
                         title={card.name}
                         description={card.type}
                         id={card.id}
