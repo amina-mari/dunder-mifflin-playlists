@@ -37,4 +37,26 @@
             }
         }
     }
+
+    .playlist-main {
+        > img {
+            width: 40%;
+            display: block;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        > p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        section {
+            width: 60%;
+            margin: auto;
+        }
+    }
 }

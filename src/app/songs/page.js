@@ -9,6 +9,7 @@ import BackForthButton from '../components/back-forth-button/BackForthButton';
 import Title from '../components/title/title'
 import Card from '../components/card/Card';
 import CardPlaylist from '../components/card-playlist/CardPlaylist';
+import PlaylistTrack from '../components/playlist-track/PlaylistTrack';
 
 import fetchArtists from '@/utils/fetchArtists/fetchArtists';
 import fetchLatestTracks from '@/utils/fetchLatestTracks/fetchLatestTracks';
@@ -172,18 +173,27 @@ export default function SongsPage() {
             }
 
             {show === "playlist" && 
-                <main>
+                <main className={styles["playlist-main"]}>
                     <img src={playlist.imgSrc} alt="" />
                     <Title>{playlist.name}</Title>
                     <p>by {playlist.ownerName}</p>
                     <span>{playlist.description}</span>
-                    {playlist.tracks && 
-                        playlist.tracks.map((track) => 
-                            <div key={track.id}>
-                                <img src={track.imgSrc} alt="" />
-                                <p>{track.name}</p>
-                                <p>{track.artists}</p>
-                            </div>)}
+                    <section>
+                        {playlist.tracks && 
+                            playlist.tracks.map((track) => 
+                                // <div key={track.id}>
+                                //     <img src={track.imgSrc} alt="" />
+                                //     <p>{track.name}</p>
+                                //     <p>{track.artists}</p>
+                                // </div>
+                                <PlaylistTrack 
+                                    id={track.id}
+                                    imgSrc={track.imgSrc}
+                                    name={track.name}
+                                    artists={track.artists} />
+                            )
+                        }
+                    </section>
 
                 </main>
             }
